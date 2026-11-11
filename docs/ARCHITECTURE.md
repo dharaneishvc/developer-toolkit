@@ -1,4 +1,4 @@
-# Developer Toolbox Architecture
+# Developer Toolkit Architecture
 
 ## Product and FE design
 
@@ -41,7 +41,7 @@ JSON uses the standard parser; YAML has alias bounds; CSV uses PapaParse with fo
 
 ## DB design
 
-Database: `local-tools-Developer Toolbox`, version 1.
+Database: `local-tools-Developer Toolbox`, version 1. This stable internal name is retained for compatibility with existing browser data; it does not follow the visible page title.
 
 | Store | Key | Value | Retention |
 | --- | --- | --- | --- |

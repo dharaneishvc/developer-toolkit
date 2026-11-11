@@ -52,5 +52,5 @@ function Workbench({ id }: { id: string }) {
 export default function App() {
   const [active, setActive] = useState(initialTool)
   useEffect(() => { const handler = () => setActive(initialTool()); window.addEventListener('hashchange', handler); return () => window.removeEventListener('hashchange', handler) }, [])
-  return <Shell title="Developer toolbox" subtitle="Developer" tools={tools} active={active} onSelect={setActive}><Workbench key={active} id={active} /></Shell>
+  return <Shell title="Developer Toolkit" subtitle="Developer Tools" tools={tools} active={active} onSelect={setActive}><Workbench key={active} id={active} /></Shell>
 }

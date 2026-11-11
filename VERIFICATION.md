@@ -1,4 +1,4 @@
-# Developer Toolbox Verification
+# Developer Toolkit Verification
 
 Verified locally on Windows with Node.js 24 on 2026-11-01. This report applies only to this repository.
 

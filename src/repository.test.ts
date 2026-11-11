@@ -5,6 +5,11 @@ import YAML from 'yaml'
 import { tools } from './tools'
 describe('repository contracts', () => {
   it('documents the catalog count', () => expect(readFileSync(resolve('README.md'), 'utf8')).toContain(`${tools.length} tools`))
+  it('uses the project name and author in package and page metadata', () => {
+    expect(JSON.parse(readFileSync(resolve('package.json'), 'utf8'))).toMatchObject({ name: 'developer-toolkit', author: 'Dharaneish V C' })
+    expect(readFileSync(resolve('index.html'), 'utf8')).toContain('<title>Developer Toolkit</title>')
+    expect(readFileSync(resolve('index.html'), 'utf8')).toContain('<meta name="author" content="Dharaneish V C" />')
+  })
   it('has self-contained documentation and verification', () => {
     for (const path of ['README.md', 'VERIFICATION.md', 'docs/ARCHITECTURE.md', 'docs/OPERATIONS.md', 'CONTRIBUTING.md', 'SECURITY.md', 'Jenkinsfile']) expect(existsSync(resolve(path))).toBe(true)
     expect(readFileSync(resolve('README.md'), 'utf8')).toContain('[Verification](VERIFICATION.md)')

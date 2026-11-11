@@ -1,6 +1,6 @@
-# Developer Toolbox
+# Developer Toolkit
 
-A free, local-first developer workbench. Text, files, JWTs, and keys stay in browser memory. No account, paid API, telemetry, or upload server is used.
+A free, local-first developer toolkit by Dharaneish V C. Text, files, JWTs, and keys stay in browser memory. No account, paid API, telemetry, or upload server is used.
 
 ## Supported catalog: 54 tools
 
@@ -41,4 +41,4 @@ Input: 2 million characters; output: 5 million; imports: 4 MB; job timeout: 15 s
 
 JWT decoding is NOT verification. SHA-1 is legacy-only, not recommended for security. Generated HTML stays inert textarea text. Submitted code/SQL is never executed. Web Crypto randomness is used; this is not a password-manager replacement. Limits mitigate, but do not eliminate, hostile-input memory exhaustion. Large parser bundles are an acknowledged initial-load cost. Arbitrary commercial-tool parity is not claimed.
 
-See [Architecture](docs/ARCHITECTURE.md), [Operations](docs/OPERATIONS.md), [Contributing](CONTRIBUTING.md), and [Security](SECURITY.md). Publish this folder as an independent repository and enable the included Pages workflow. Jenkins requires a configured external runner. No remote repository, live deployment, or credit-funded API has been created.
+See [Architecture](docs/ARCHITECTURE.md), [Operations](docs/OPERATIONS.md), [Contributing](CONTRIBUTING.md), and [Security](SECURITY.md). The included GitHub Actions workflow verifies changes and deploys the static site to GitHub Pages from `main`. Public repositories can use GitHub Pages on the free plan; setup is required, and this workspace has not performed a live deployment. Jenkins requires a configured external runner. No credit-funded API is used.

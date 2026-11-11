@@ -1,7 +1,7 @@
 import { openDB } from 'idb'
 
 export type HistoryEntry = { id: string; tool: string; name: string; time: number }
-const database = () => openDB('local-tools-' + document.title, 1, { upgrade(db) { db.createObjectStore('preferences'); db.createObjectStore('history', { keyPath: 'id' }) } })
+const database = () => openDB('local-tools-Developer Toolbox', 1, { upgrade(db) { db.createObjectStore('preferences'); db.createObjectStore('history', { keyPath: 'id' }) } })
 export async function getFavorites(): Promise<string[]> { return (await (await database()).get('preferences', 'favorites')) ?? [] }
 export async function setFavorites(ids: string[]) { await (await database()).put('preferences', ids, 'favorites') }
 export async function getHistory(): Promise<HistoryEntry[]> { return ((await (await database()).getAll('history')) as HistoryEntry[]).sort((first, second) => second.time - first.time) }

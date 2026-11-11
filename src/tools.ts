@@ -13,7 +13,7 @@ const json = (value: unknown) => JSON.stringify(value, null, 2)
 const parse = (value: string): unknown => JSON.parse(value)
 const field = (key: string, label: string, value: string, choices?: string[]): Field => ({ key, label, value, choices })
 const textSample = 'Hello, world!\nLocal tools, private by default.'
-const jsonSample = '{"name":"Local Tools","active":true,"tags":["free","private"]}'
+const jsonSample = '{"name":"Developer Toolkit","active":true,"tags":["free","private"]}'
 const hex = (bytes: ArrayBuffer | Uint8Array) => Array.from(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes), byte => byte.toString(16).padStart(2, '0')).join('')
 function fromHex(input: string) {
   if (!/^(?:[\da-f]{2})*$/i.test(input)) throw new Error('Enter an even number of hexadecimal digits.')
@@ -63,8 +63,8 @@ export const tools: Tool[] = [
   { id: 'json-validate', name: 'JSON validator', category: 'Data', sample: jsonSample, run: input => { parse(input); return 'Valid JSON' } },
   { id: 'json-schema', name: 'JSON Schema validator', category: 'Data', sample: jsonSample, secondary: '{"type":"object","required":["name"],"properties":{"name":{"type":"string"}}}', run: (input, _options, secondary) => { const ajv = new Ajv({ allErrors: true, strict: false }); const validate = ajv.compile(JSON.parse(secondary)); return validate(parse(input)) ? 'Valid against schema' : json(validate.errors) } },
   { id: 'json-yaml', name: 'JSON to YAML', category: 'Data', sample: jsonSample, run: input => YAML.stringify(parse(input)) },
-  { id: 'yaml-json', name: 'YAML to JSON', category: 'Data', sample: 'name: Local Tools\nactive: true\ntags:\n  - private', run: input => json(YAML.parse(input, { maxAliasCount: 50 })) },
-  { id: 'yaml-format', name: 'YAML formatter', category: 'Data', sample: 'name: Local Tools\ntags: [free, private]', run: input => YAML.stringify(YAML.parse(input, { maxAliasCount: 50 })) },
+  { id: 'yaml-json', name: 'YAML to JSON', category: 'Data', sample: 'name: Developer Toolkit\nactive: true\ntags:\n  - private', run: input => json(YAML.parse(input, { maxAliasCount: 50 })) },
+  { id: 'yaml-format', name: 'YAML formatter', category: 'Data', sample: 'name: Developer Toolkit\ntags: [free, private]', run: input => YAML.stringify(YAML.parse(input, { maxAliasCount: 50 })) },
   { id: 'csv-json', name: 'CSV to JSON', category: 'Data', sample: 'name,count\nAlpha,2\nBeta,3', run: input => json(csv(input)) },
   { id: 'json-csv', name: 'JSON to CSV', category: 'Data', sample: '[{"name":"Alpha","count":2},{"name":"Beta","count":3}]', run: input => { const value = parse(input); if (!Array.isArray(value) || value.some(item => !item || typeof item !== 'object' || Array.isArray(item))) throw new Error('Enter an array of flat objects.'); return Papa.unparse(value, { escapeFormulae: true }) } },
   { id: 'csv-tsv', name: 'CSV to TSV', category: 'Data', sample: 'name,count\nAlpha,2', run: input => Papa.unparse(csv(input), { delimiter: '\t', escapeFormulae: true }) },
